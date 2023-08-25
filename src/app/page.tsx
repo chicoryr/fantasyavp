@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <h1 className="text-3xl font-bold underline">
       {(teams && !loading) && (<>
-        teams now fetched correctly
+        {teams[1].Player1} testing player loading
       </>)}
     </h1>
   )
