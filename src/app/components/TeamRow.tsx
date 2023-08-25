@@ -1,4 +1,4 @@
-import { Team } from "../types/types";
+import { Team } from "../../types/types";
 
 interface TeamDisplayProps {
     Team: Team;
