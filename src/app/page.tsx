@@ -1,13 +1,13 @@
 "use client";
-import useFetchTeams from "../hooks/fetchTeams"
+import useFetchTournament from "../hooks/fetchTeams"
 
 
 export default function Home() {
-  const {loading, error, teams} = useFetchTeams();
+  const {loading, error, teams} = useFetchTournament('chicago-test');
   return (
     <h1 className="text-3xl font-bold underline">
       {(teams && !loading) && (<>
-        {teams.Player1}
+        teams now fetched correctly
       </>)}
     </h1>
   )
