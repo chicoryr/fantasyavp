@@ -1,5 +1,7 @@
 "use client";
+import TeamRow from "@/components/TeamRow";
 import useFetchTournament from "../hooks/fetchTeams"
+import { Team } from "@/types/types";
 
 
 export default function Home() {
@@ -7,7 +9,9 @@ export default function Home() {
   return (
     <h1 className="text-3xl font-bold underline">
       {(teams && !loading) && (<>
-        {teams[1].Player1} testing player loading
+        {teams.map((team) => {
+          return <TeamRow Team={team}  />
+        })}
       </>)}
     </h1>
   )

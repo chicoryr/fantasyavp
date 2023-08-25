@@ -1,17 +1,9 @@
+import { Team, Tournament } from "../types/types";
 import { db } from "../firebase/config";
-import { DocumentData, doc, getDoc } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 
-interface Tournament {
-    Team_ID: string[];
-  }
 
-  interface Team {
-    Player1: string;
-    Player2: string;
-    Player1Rating: number;
-    Player2Rating: number;
-  }
 
 export default function useFetchTournament(tournament: string){
     const [loading, setLoading] = useState(true);
