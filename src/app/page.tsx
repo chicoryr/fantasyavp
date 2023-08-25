@@ -8,8 +8,8 @@ export default function Home() {
   return (
     <h1 className="text-3xl font-bold underline">
       {(teams && !loading) && (<>
-        {teams.map((team) => {
-          return <TeamRow Team={team}  />
+        {teams.map((team, i) => {
+          return <TeamRow Team={team} key={i} />
         })}
       </>)}
     </h1>
