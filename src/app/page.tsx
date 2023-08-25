@@ -1,7 +1,7 @@
 "use client";
-import TeamRow from "@/components/TeamRow";
+import TeamRow from "../components/TeamRow";
 import useFetchTournament from "../hooks/fetchTeams"
-import { Team } from "@/types/types";
+import { Team } from "../types/types";
 
 
 export default function Home() {
