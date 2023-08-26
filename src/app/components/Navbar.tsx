@@ -7,7 +7,11 @@ export default function Navbar(){
                 <li className="mr-6">
                     <Link className="text-blue-500 hover:text-blue-800" href="/">Home</Link>
                 </li>
+                <li className="mr-6">
+                    <Link className="text-blue-500 hover:text-blue-800" href="/tournaments/chicago-test">chicago-test</Link>
+                </li>
             </ul>
+            <Link className="text-3xl" href="/">Fantasy AVP</Link>
             <ul className="flex p-4">
                 <li className="mr-6">
                     <Link className="text-blue-500 hover:text-blue-800 h-full" href="/signup">Signup</Link>

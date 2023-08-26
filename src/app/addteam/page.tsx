@@ -27,7 +27,7 @@ const TeamAdder: React.FC = () => {
   if(!auth.currentUser){
     router.push('/');
   }
-  
+
   async function fetchTournaments() {
     try {
         const querySnapshot = await getDocs(collection(db, 'Tournaments'));
