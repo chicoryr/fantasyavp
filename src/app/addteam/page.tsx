@@ -23,10 +23,13 @@ const TeamAdder: React.FC = () => {
   const [selectedTournament, setSelectedTournament] = useState<string>('');
   const router = useRouter();
 
-  useEffect(() => { 
-  if(!auth.currentUser){
-    router.push('/');
-  }
+  useEffect(() => {
+  auth.onAuthStateChanged(function(user) {
+    if (user) {
+    } else {
+      router.push('/');
+    }
+  });
   
   async function fetchTournaments() {
     try {

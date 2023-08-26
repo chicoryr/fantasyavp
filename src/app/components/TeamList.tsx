@@ -1,3 +1,4 @@
+import { auth } from "../../firebase/config";
 import useFetchTournament from "../../hooks/fetchTeams";
 import TeamRow from "./TeamRow";
 
