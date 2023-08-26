@@ -1,7 +1,8 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { collection, addDoc, updateDoc, doc, arrayUnion, getDocs } from "firebase/firestore"; 
-import { db } from '../../firebase/config';
+import { auth, db } from '../../firebase/config';
+import { useRouter } from 'next/navigation'
 
 interface Team {
   Player1: string;
@@ -9,6 +10,7 @@ interface Team {
   Player1Rating: number;
   Player2Rating: number;
 }
+
 
 const TeamAdder: React.FC = () => {
   const [team, setTeam] = useState<Team>({
@@ -19,10 +21,15 @@ const TeamAdder: React.FC = () => {
   });
   const [tournaments, setTournaments] = useState<string[]>([]);
   const [selectedTournament, setSelectedTournament] = useState<string>('');
+  const router = useRouter();
 
-  useEffect(() => {
-    async function fetchTournaments() {
-      try {
+  useEffect(() => { 
+  if(!auth.currentUser){
+    router.push('/');
+  }
+  
+  async function fetchTournaments() {
+    try {
         const querySnapshot = await getDocs(collection(db, 'Tournaments'));
         const tournamentNames = querySnapshot.docs.map(doc => doc.id);
         setTournaments(tournamentNames);
@@ -67,7 +74,9 @@ const TeamAdder: React.FC = () => {
       alert('Error processing request. Please try again.');
     }
   };
-
+  if(!auth.currentUser){
+    return (<></>)
+  }
   return (
     <form onSubmit={handleSubmit}>
       <select 
