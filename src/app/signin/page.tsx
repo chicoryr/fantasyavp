@@ -1,5 +1,5 @@
 "use client";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { auth } from "../../firebase/config"
 import { useRouter } from "next/navigation";
@@ -11,13 +11,12 @@ export default function Page() {
     const router = useRouter();
     const handleSignup = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
-        await createUserWithEmailAndPassword(auth, email, password)
+        await signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             const user = userCredential.user;
             router.push("/");
         })
         .catch((error) => {
-            const errorCode = error.code;
             const errorMessage = error.message;
             setError(errorMessage);
         });
@@ -26,7 +25,7 @@ export default function Page() {
 
     return (
         <div>
-            <h2>Signup</h2>
+            <h2>Sign in</h2>
             {error && <p style={{ color: 'red' }}>{error}</p>}
             <form onSubmit={handleSignup}>
                 <div>
@@ -45,7 +44,7 @@ export default function Page() {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
-                <button type="submit">Signup</button>
+                <button type="submit">Sign in</button>
             </form>
         </div>
     );
