@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { collection, addDoc, updateDoc, doc, arrayUnion, getDocs } from "firebase/firestore"; 
 import { auth, db } from '../../firebase/config';
-import { useRouter } from 'next/navigation'
+import { Redirect } from '@/helpers';
 
 interface Team {
   Player1: string;
@@ -21,11 +21,10 @@ const TeamAdder: React.FC = () => {
   });
   const [tournaments, setTournaments] = useState<string[]>([]);
   const [selectedTournament, setSelectedTournament] = useState<string>('');
-  const router = useRouter();
 
   useEffect(() => { 
   if(!auth.currentUser){
-    router.push('/');
+    Redirect("/");
   }
 
   async function fetchTournaments() {

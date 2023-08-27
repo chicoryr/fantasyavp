@@ -2,8 +2,8 @@
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useState } from "react";
 import { auth } from "../../firebase/config"
-import { useRouter } from "next/navigation";
 import GoogleAuthButton from "../components/GoogleAuthButton";
+import { Redirect } from "@/helpers";
 
 
 
@@ -13,16 +13,13 @@ export default function Page() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     
-
-    const router = useRouter();
-    
     const handleSignup = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         await createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             const user = userCredential.user;
             updateProfile(user, {displayName: name})
-            router.push("/");
+            Redirect("/");
         })
         .catch((error) => {
             const errorMessage = error.message;
