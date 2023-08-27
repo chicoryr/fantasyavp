@@ -3,11 +3,11 @@ import { signOut } from "firebase/auth";
 import { auth } from "../../firebase/config";
 import Link from "next/link";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+
 
 export default function Navbar(){
     const [user, setUser] = useState(auth.currentUser);
-    const router = useRouter();
+    
     auth.onAuthStateChanged(function(user) {
         if (user) {
             setUser(user);
@@ -28,15 +28,7 @@ export default function Navbar(){
             <Link className="text-3xl" href="/">Fantasy AVP</Link>
             <ul className="flex p-4">
                 {user ? <li className="mr-6">
-                    <div className="text-blue-500 hover:text-blue-800 h-full hover:cursor-pointer" onClick={() =>{
-                        signOut(auth).then(() => {
-                            setUser(null);
-                            router.push("/");
-                            alert("You have been signed out.");
-                          }).catch((error) => {
-                            console.log(error);
-                          })
-                    }}>Sign out</div>
+                    <Link className="text-blue-500 hover:text-blue-800 h-full" href="/profile">Profile</Link>
                 </li> : <>
                 <li className="mr-6">
                     <Link className="text-blue-500 hover:text-blue-800 h-full" href="/signup">Sign up</Link>

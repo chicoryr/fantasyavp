@@ -3,6 +3,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { auth } from "../../firebase/config"
 import { useRouter } from "next/navigation";
+import GoogleAuthButton from "../components/GoogleAuthButton";
 
 export default function Page() {
     const [email, setEmail] = useState('');
@@ -25,7 +26,7 @@ export default function Page() {
 
     return (
         <div>
-            <h2>Sign in</h2>
+            <GoogleAuthButton text="Sign in with Google"/>
             {error && <p style={{ color: 'red' }}>{error}</p>}
             <form onSubmit={handleSignup}>
                 <div>
