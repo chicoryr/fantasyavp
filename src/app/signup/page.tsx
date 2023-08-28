@@ -3,23 +3,25 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useState } from "react";
 import { auth } from "../../firebase/config"
 import GoogleAuthButton from "../components/GoogleAuthButton";
-import { Redirect } from "@/helpers";
+import { useRouter } from "next/navigation";
 
 
 
 export default function Page() {
-    const [name, setName] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const router = useRouter();
     
     const handleSignup = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         await createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             const user = userCredential.user;
-            updateProfile(user, {displayName: name})
-            Redirect("/");
+            updateProfile(user, {displayName: firstName + " " + lastName})
+            router.push("/");
         })
         .catch((error) => {
             const errorMessage = error.message;
@@ -32,13 +34,20 @@ export default function Page() {
             {error && <p style={{ color: 'red' }}>{error}</p>}
             <form onSubmit={handleSignup}>
             <div>
-                    <label>Name:</label>
+                    <label>First name:</label>
                     <input
                         type="name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                    />
+                    <label>Last name:</label>
+                    <input
+                        type="name"
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
                     />
                 </div>
+                
                 <div>
                     <label>Email:</label>
                     <input
@@ -55,7 +64,7 @@ export default function Page() {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
-                <button type="submit">Signup</button>
+                <button type="submit">Sign up</button>
             </form>
         </div>
     );
