@@ -16,39 +16,29 @@ export default function Navbar(){
             setUser(null);
         }
       });
-    return (
-        <div className="bg-gray-300 w-full border-b-2 flex items-center justify-between p-2">
-            <ul className="flex p-4">
-                <li className="mr-6">
-                    <Link className="text-blue-500 hover:text-blue-800" href="/">Home</Link>
-                </li>
-                <li className="mr-6">
-                    <Link className="text-blue-500 hover:text-blue-800" href="/tournaments/chicago-test">chicago-test</Link>
-                </li>
-            </ul>
-            <Link className="text-3xl" href="/">Fantasy AVP</Link>
-            <ul className="flex p-4">
-                {user ? <li className="mr-6">
-                    <div className="text-blue-500 hover:text-blue-800 h-full hover:cursor-pointer" onClick={() =>{
+      return (
+        <div className="bg-gray-300 w-full border-b-2 flex flex-col md:flex-row items-center justify-between p-2">
+            <Link className="text-3xl mb-2 md:mb-0" href="/">Fantasy AVP</Link>
+            
+            <div className="flex flex-wrap justify-around md:justify-start mb-2 md:mb-0 p-4">
+                <Link className="text-blue-500 hover:text-blue-800 mr-4 mb-2 md:mb-0" href="/tournaments/chicago-test">chicago-test</Link>
+                {user ? 
+                    <div className="text-blue-500 hover:text-blue-800 hover:cursor-pointer" onClick={() => {
                         signOut(auth).then(() => {
                             setUser(null);
                             router.push("/");
-                          }).catch((error) => {
+                        }).catch((error) => {
                             console.log(error);
-                          })
-                    }}>Sign out</div>
-                </li> : <>
-                <li className="mr-6">
-                    <Link className="text-blue-500 hover:text-blue-800 h-full" href="/signup">Sign up</Link>
-                </li>
-                <li className="mr-6">
-                    <Link className="text-blue-500 hover:text-blue-800 h-full" href="/signin">Sign in</Link>
-                </li>
-                </>}
-                <li className="mr-6">
-                    <Link className="text-blue-500 hover:text-blue-800 h-full" href="/about">About</Link>
-                </li>
-            </ul>
+                        })
+                    }}>Sign out</div> 
+                : 
+                <>
+                    <Link className="text-blue-500 hover:text-blue-800 mr-4 mb-2 md:mb-0" href="/signup">Sign up</Link>
+                    <Link className="text-blue-500 hover:text-blue-800 mr-4 mb-2 md:mb-0" href="/signin">Sign in</Link>
+                </>
+                }
+                <Link className="text-blue-500 hover:text-blue-800" href="/about">About</Link>
+            </div>
         </div>
     )
 }

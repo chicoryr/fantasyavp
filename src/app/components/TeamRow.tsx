@@ -11,20 +11,20 @@ interface TeamDisplayProps {
 
 export default function TeamRow(props: TeamDisplayProps) {
     const isStrikethrough = !props.canSelect && !props.selected;
-    const buttonClasses = props.canSelect || props.selected ? "bg-blue-500 text-white" : "bg-gray-400 text-white cursor-not-allowed";
+    const buttonClasses = props.canSelect ? "bg-blue-500 text-white" : "bg-gray-400 text-white cursor-not-allowed";
     const bgColor = props.selected ? "bg-blue-200" : (props.canSelect ? "bg-green-200" : "bg-red-200");
-    
+
     return (
-        <div className={`border-2 rounded-lg flex justify-between items-center w-2/3 mx-auto ${bgColor}`}>
-            <span>
+        <div className={`border-2 p-0 rounded-lg flex flex-col md:flex-row justify-between items-center w-full md:w-2/3 mx-auto my-1 md:my-2 ${bgColor}`}>
+            <span className={` mb-2 md:mb-0`}>
                 {props.seed}. {props.Team.Player1} / {props.Team.Player2}
             </span>
             <div className="flex items-center">
-                <span>${Math.round(props.price || 0).toLocaleString()}</span>
+                <span className="mr-2">${Math.round(props.price || 0).toLocaleString()}</span>
                 <button 
-                    onClick={props.onClick} 
-                    className={`px-2 py-1 rounded w-24 ml-2 w-32 ${buttonClasses} ${isStrikethrough ? "line-through" : ""}`}
-                    disabled={!props.canSelect && !props.selected}>
+                    onClick={props.onClick}
+                    className={`text-xs md:text-base px-2 py-1 rounded w-full md:w-auto ml-2 ${buttonClasses} ${isStrikethrough ? "line-through" : ""}`}
+                    disabled={!props.selected && !props.canSelect}>
                     {props.selected ? "Deselect" : "Select"}
                 </button>
             </div>
