@@ -7,4 +7,5 @@ export interface Tournament {
     Player2: string;
     Player1Rating: number;
     Player2Rating: number;
+    gender: 'Male' | 'Female'
   }
