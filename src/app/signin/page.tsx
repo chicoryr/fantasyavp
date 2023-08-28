@@ -2,6 +2,7 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { auth } from "../../firebase/config"
+import GoogleAuthButton from "../components/GoogleAuthButton";
 import { useRouter } from "next/navigation";
 
 export default function Page() {
@@ -9,12 +10,12 @@ export default function Page() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const router = useRouter();
+    
     const handleSignup = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         await signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            const user = userCredential.user;
-            router.push("/");
+        .then(() => {
+        router.push("/");
         })
         .catch((error) => {
             const errorMessage = error.message;
@@ -25,7 +26,7 @@ export default function Page() {
 
     return (
         <div>
-            <h2>Sign in</h2>
+            <GoogleAuthButton text="Sign in with Google"/>
             {error && <p style={{ color: 'red' }}>{error}</p>}
             <form onSubmit={handleSignup}>
                 <div>
