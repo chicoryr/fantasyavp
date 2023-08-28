@@ -31,7 +31,7 @@ export default function TeamList() {
     };
 
     return (
-        <div className="text-lg font-bold p-2 md:p-0">
+        <div className="text-xl font-bold p-2 md:p-0">
           <span className="`border-2 rounded-lg flex justify-between items-center w-2/3 mx-auto">Total: ${selectedTotalPrice > 0 ? Math.round(selectedTotalPrice).toLocaleString() : 0} <span>Remaining: ${Math.round(moneyAvailable - selectedTotalPrice).toLocaleString()}</span></span>
             {(teams && !loading && !error) && (
                 teams.map((team, i) => (
