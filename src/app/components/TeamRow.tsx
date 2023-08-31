@@ -17,7 +17,7 @@ export default function TeamRow(props: TeamDisplayProps) {
         return (<></>)
     }
     return (
-        <div className={`border-2 p-0 rounded-lg flex flex-col md:flex-row justify-between items-center w-full md:w-2/3 mx-auto my-1 md:my-2 ${bgColor}`}>
+        <div className={`border-2 p-0 rounded-lg flex flex-col md:flex-row justify-between items-center w-full md:w-2/3 mx-auto my-1 md:my-2 ${bgColor}`} >
             <span className={` mx-2 md:mb-0`}>
                 {props.Team.Player1} / {props.Team.Player2}
             </span>

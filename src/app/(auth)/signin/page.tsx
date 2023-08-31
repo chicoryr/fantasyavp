@@ -25,28 +25,42 @@ export default function Page() {
 
 
     return (
-        <div>
-            <GoogleAuthButton text="Sign in with Google"/>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-            <form onSubmit={handleSignup}>
-                <div>
-                    <label>Email:</label>
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
+        <div className="min-h-screen flex flex-col justify-center items-center bg-gray-100">
+            <div className="w-full max-w-md bg-white p-8 rounded-xl shadow-md">
+                <div className="mb-4">
+                    <GoogleAuthButton text="Sign in with Google" />
                 </div>
-                <div>
-                    <label>Password:</label>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </div>
-                <button type="submit">Sign in</button>
-            </form>
+
+                {error && <p className="mb-4 text-red-500">{error}</p>}
+
+                <form onSubmit={handleSignup} className="space-y-4">
+                    <div>
+                        <label className="block text-sm font-medium mb-2">Email:</label>
+                        <input
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            className="w-full px-4 py-2 border rounded-md"
+                        />
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-medium mb-2">Password:</label>
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            className="w-full px-4 py-2 border rounded-md"
+                        />
+                    </div>
+
+                    <div>
+                        <button type="submit" className="w-full mt-4 bg-blue-600 text-white p-2 rounded hover:bg-blue-700">
+                            Sign in
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 }
