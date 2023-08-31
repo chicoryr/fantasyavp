@@ -5,10 +5,14 @@ import TeamRow from "./TeamRow";
 import { useEffect, useState } from "react";
 import { Audio } from  'react-loader-spinner'
 import { auth, db } from "@/firebase/config";
-import { addDoc, collection, doc, setDoc } from "firebase/firestore"; 
-import { redirect } from "next/navigation";
+import { doc, setDoc } from "firebase/firestore"; 
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
 const moneyAvailable = 1000000;
 let selectedTeamIDs: string[] = [];
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 export default function TeamList() {
     const { loading, error, teams } = useFetchTournament('chicago-test');
@@ -54,6 +58,14 @@ export default function TeamList() {
         }
 
     };
+    
+    const currentTime = dayjs().tz("America/Chicago");
+    const cutOffTime = dayjs.tz("2023-09-01 08:30:00", "America/Chicago");
+    if (currentTime.isAfter(cutOffTime)) {
+        return (
+            <>The tournament has started, you can no longer change or make picks!</>
+        )
+    }
     if(loading){
         return(
             <div className="flex items-center justify-center h-screen">

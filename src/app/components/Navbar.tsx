@@ -23,7 +23,6 @@ export default function Navbar(){
             <div className="flex flex-wrap justify-around md:justify-start mb-2 md:mb-0 p-4">
                 <Link className="text-blue-500 hover:text-blue-800 mr-4 mb-2 md:mb-0" href="/tournaments/chicago-test">Chicago</Link>
                 {user ? <>
-                    <Link className="text-blue-500 hover:text-blue-800 mr-4 mb-2 md:mb-0" href="/picks">Your picks</Link>
                     <Link className="text-blue-500 hover:text-blue-800 mr-4 mb-2 md:mb-0" href="/profile">Profile</Link>
                     </>
                 : 
