@@ -19,7 +19,7 @@ export default function TeamRow(props: TeamDisplayProps) {
     return (
         <div className={`border-2 p-0 rounded-lg flex flex-col md:flex-row justify-between items-center w-full md:w-2/3 mx-auto my-1 md:my-2 ${bgColor}`} >
             <span className={` mx-2 md:mb-0`}>
-                {props.Team.Player1} / {props.Team.Player2}
+                {props.Team.seed}. {props.Team.Player1} / {props.Team.Player2}
             </span>
             <div className="flex items-center">
                 <span className="mr-2">${Math.round(props.price || 0).toLocaleString()}</span>

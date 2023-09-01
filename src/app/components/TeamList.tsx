@@ -23,6 +23,7 @@ export default function TeamList() {
     const [selectedCountMale, setSelectedCountMale] = useState(0);
     const [selectedCountFemale, setSelectedCountFemale] = useState(0);
     const [selectedTotalPrice, setSelectedTotalPrice] = useState(0);
+    const [showBothGenders, setShowBothGenders] = useState(false);
 
     useEffect(() => {
       if (teams) {
@@ -58,7 +59,7 @@ export default function TeamList() {
         }
 
     };
-    
+
     const currentTime = dayjs().tz("America/Chicago");
     const cutOffTime = dayjs.tz("2023-09-01 08:30:00", "America/Chicago");
     if (currentTime.isAfter(cutOffTime)) {
@@ -80,12 +81,14 @@ export default function TeamList() {
     }
     return (
         <div className="text-xl font-bold p-2 md:p-0">
-            {canSave && auth.currentUser && <button 
-            className="mx-auto justify-center flex m-4 border-2 rounded-lg p-2 w-1/2 bg-green-600 hover:bg-green-700"
+            <div className="group relative m-1 flex justify-center">
+            <button 
+            className={`mx-auto justify-center flex m-4 border-2 rounded-lg p-2 w-1/2 
+            ${canSave ? "bg-green-600 hover:bg-green-700" : "bg-gray-400"}`}
             onClick={async () => {
                 const userId = auth.currentUser?.uid;
-                if (userId) {  // To ensure that userId is not undefined
-                    const teamDocRef = doc(db, 'user-picks', userId);  // Create a reference to the document with userId as its ID
+                if (userId) {
+                    const teamDocRef = doc(db, 'user-picks', userId);
                     await setDoc(teamDocRef, { selectedTeams: selectedTeamIDs });
                     alert("Picks saved!");
                 }else{
@@ -93,11 +96,14 @@ export default function TeamList() {
                 }
                 
             }}>
-                SAVE TEAMS
-                </button> }
-            
+                SAVE PICKS
+                </button>
+                {!canSave && <span className="absolute bottom-10 scale-0 rounded bg-gray-800 p-2 text-lg text-white group-hover:scale-100">
+                    You must pick 4 teams from each gender before you can save teams!
+                    </span>}
+                </div>
           <span className="`border-2 rounded-lg flex justify-between items-center w-2/3 mx-auto">Total: ${selectedTotalPrice > 0 ? Math.round(selectedTotalPrice).toLocaleString() : 0}
-          <button className="mx-auto justify-center flex m-0 border-2 rounded-lg p-2 hover:bg-slate-200"
+          <button className="mx-auto justify-center flex m-0 border-2 rounded-lg p-2 w-11/12 hover:bg-slate-200"
             onClick={() => {
                 setGender(gender == 'Male' ? 'Female' : 'Male');
             }}>
