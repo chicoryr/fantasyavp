@@ -10,4 +10,5 @@ export interface Tournament {
     Player2Rating: number;
     gender: 'Male' | 'Female';
     seed: number;
+    finish?: number
   }

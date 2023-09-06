@@ -7,7 +7,7 @@ export default function Navbar(){
     const {user} = UserAuth();
 
       return (
-        <div className="bg-gray-300 w-full border-b-2 flex flex-col md:flex-row items-center justify-between p-2">
+        <div className="bg-slate-800 w-full flex flex-col md:flex-row items-center justify-between p-2">
             <Link className="text-3xl mb-2 md:mb-0" href="/">Fantasy AVP</Link>
             <div className="flex flex-wrap justify-around md:justify-start mb-2 md:mb-0 p-4">
                 
