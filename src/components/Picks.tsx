@@ -2,7 +2,7 @@
 import useFetchPicks from "@/hooks/fetchPicks";
 export default function Picks() {
     const {loading, picks} = useFetchPicks();
-    const sumOfFinishes = picks?.reduce((sum, pick) => sum + pick.finish, 0) || undefined;
+    const sumOfFinishes = picks?.reduce((sum, pick) => sum + (pick.finish ? pick.finish : 0), 0) || undefined;
 
     return (
         <div className="min-h-screen py-6 flex justify-center sm:py-12">
