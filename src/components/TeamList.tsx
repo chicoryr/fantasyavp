@@ -1,6 +1,6 @@
 "use client"
 import {normalizeTeams} from "@/helpers/values";
-import useFetchTournament from "../../hooks/fetchTeams";
+import useFetchTournament from "../hooks/fetchTeams";
 import TeamRow from "./TeamRow";
 import { useEffect, useState } from "react";
 import { Audio } from  'react-loader-spinner'

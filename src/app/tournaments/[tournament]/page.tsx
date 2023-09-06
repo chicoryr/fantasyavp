@@ -1,7 +1,7 @@
 "use client"
 import { useState } from "react";
-import TeamList from "../../components/TeamList";
-import Picks from "@/app/components/Picks";
+import TeamList from "../../../components/TeamList";
+import Picks from "@/components/Picks";
 import { auth } from "@/firebase/config";
 
 export default function Home() {

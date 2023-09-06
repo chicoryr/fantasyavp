@@ -1,25 +1,14 @@
 
 "use client";
-import { signOut } from "firebase/auth";
-import { auth } from "../../firebase/config";
+import { UserAuth } from "@/context/AuthContext";
 import Link from "next/link";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
 
 export default function Navbar(){
-    const [user, setUser] = useState(auth.currentUser);
-    const router = useRouter();
-    auth.onAuthStateChanged(function(user) {
-        if (user) {
-            setUser(user);
-        }else{
-            setUser(null);
-        }
-      });
+    const {user} = UserAuth();
+
       return (
         <div className="bg-gray-300 w-full border-b-2 flex flex-col md:flex-row items-center justify-between p-2">
             <Link className="text-3xl mb-2 md:mb-0" href="/">Fantasy AVP</Link>
-            
             <div className="flex flex-wrap justify-around md:justify-start mb-2 md:mb-0 p-4">
                 
                 {user ? <>

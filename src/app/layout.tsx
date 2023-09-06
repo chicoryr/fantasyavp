@@ -1,4 +1,5 @@
-import Navbar from "./components/Navbar"
+import { AuthContextProvider } from "@/context/AuthContext";
+import Navbar from "../components/Navbar"
 import "./globals.css";
 export const metadata = {
   title: 'Fantasy AVP'
@@ -10,9 +11,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        <Navbar/>
-        {children}
+      <body suppressHydrationWarning={true}>
+        <AuthContextProvider>
+          <Navbar/>
+          {children}
+        </AuthContextProvider>
       </body>
     </html>
   )

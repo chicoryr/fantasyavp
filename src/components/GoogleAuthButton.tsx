@@ -1,26 +1,11 @@
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { auth } from "../../firebase/config";
-import { useRouter } from "next/navigation";
+import { UserAuth } from "@/context/AuthContext";
 
 export default function GoogleAuthButton(props: { text: string }) {
-    const provider = new GoogleAuthProvider();
-    const router = useRouter();
-    
+    const {googleSignIn} = UserAuth()
     return (
         <button 
             onClick={() => {
-                signInWithPopup(auth, provider)
-                .then((result) => {
-                    const credential = GoogleAuthProvider.credentialFromResult(result);
-                    const token = credential?.accessToken;
-                    const user = result.user;
-                    router.push("/");
-                })
-                .catch((error) => {
-                    const errorMessage = error.message;
-                    console.log(errorMessage);
-                    const credential = GoogleAuthProvider.credentialFromError(error);
-                });
+                googleSignIn()
             }}
             className="bg-white hover:bg-gray-100 text-gray-700 py-2 px-4 rounded shadow-md flex items-center justify-center space-x-2 border border-gray-300"
         >
