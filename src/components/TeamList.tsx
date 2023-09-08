@@ -60,13 +60,13 @@ export default function TeamList() {
 
     };
 
-    const currentTime = dayjs().tz("America/Chicago");
-    const cutOffTime = dayjs.tz("2023-09-01 08:30:00", "America/Chicago");
-    if (currentTime.isAfter(cutOffTime)) {
-        return (
-            <>The tournament has started, you can no longer change or make picks!</>
-        )
-    }
+    // const currentTime = dayjs().tz("America/Chicago");
+    // const cutOffTime = dayjs.tz("2023-09-01 08:30:00", "America/Chicago");
+    // if (currentTime.isAfter(cutOffTime)) {
+    //     return (
+    //         <>The tournament has started, you can no longer change or make picks!</>
+    //     )
+    // }
     if(loading){
         return(
             <div className="flex items-center justify-center h-screen">
