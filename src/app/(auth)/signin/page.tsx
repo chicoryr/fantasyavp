@@ -24,8 +24,8 @@ export default function Page() {
     }   
 
     return (
-        <div className="min-h-screen flex justify-center items-center bg-gray-100">
-            <div className="bg-white p-8 rounded-xl shadow-md">
+        <div className="min-h-screen flex justify-center items-center">
+            <div className="bg-teal-800 p-8 rounded-xl shadow-md">
                 <div className="mb-4 flex-col justify-center items-center">
                     <GoogleAuthButton text="Sign in with Google" />
                 </div>
@@ -54,7 +54,7 @@ export default function Page() {
                     </div>
 
                     <div>
-                        <button type="submit" className="w-full mt-4 bg-blue-600 text-white p-2 rounded hover:bg-blue-700">
+                        <button type="submit" className="w-full mt-4 bg-teal-600 text-black p-2 rounded hover:bg-teal-100">
                             Sign in
                         </button>
                     </div>
@@ -64,5 +64,5 @@ export default function Page() {
     );
 }
 
-const INPUT_STYLE = 'w-full px-4 py-2 border rounded-md'
+const INPUT_STYLE = 'w-full px-4 py-2 border border-black rounded-md bg-gray-500'
 const LABEL_STYLE = 'block text-sm font-medium mb-2'

@@ -3,12 +3,12 @@ import {normalizeTeams} from "@/helpers/values";
 import useFetchTournament from "../hooks/fetchTeams";
 import TeamRow from "./TeamRow";
 import { useEffect, useState } from "react";
-import { Audio } from  'react-loader-spinner'
 import { auth, db } from "@/firebase/config";
 import { doc, setDoc } from "firebase/firestore"; 
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
+import Loader from "./Loader";
 const moneyAvailable = 1000000;
 let selectedTeamIDs: string[] = [];
 dayjs.extend(utc);
@@ -23,7 +23,6 @@ export default function TeamList() {
     const [selectedCountMale, setSelectedCountMale] = useState(0);
     const [selectedCountFemale, setSelectedCountFemale] = useState(0);
     const [selectedTotalPrice, setSelectedTotalPrice] = useState(0);
-    const [showBothGenders, setShowBothGenders] = useState(false);
 
     useEffect(() => {
       if (teams) {
@@ -69,14 +68,7 @@ export default function TeamList() {
     // }
     if(loading){
         return(
-            <div className="flex items-center justify-center h-screen">
-            <Audio
-    height = "180"
-    width = "180"
-    color = 'green'
-    ariaLabel = 'three-dots-loading' 
-  />
-            </div>
+            <Loader/>
         )
     }
     return (

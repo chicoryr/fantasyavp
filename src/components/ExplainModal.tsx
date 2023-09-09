@@ -1,7 +1,7 @@
 export default function ExplainModal() {
   return (
-      <div className="min-h-screen flex flex-col items-center bg-gray-100">
-        <div className="w-full max-w-xl bg-white p-8 rounded-xl shadow-md text-center space-y-4 mt-20">
+      <div className="min-h-screen flex flex-col items-center">
+        <div className="w-full max-w-xl bg-teal-800 p-8 rounded-xl shadow-md text-center space-y-4 mt-20">
           <h1 className="text-2xl font-bold mb-4">Welcome to Fantasy AVP!</h1>
           
           <p>Here are the rules:</p>

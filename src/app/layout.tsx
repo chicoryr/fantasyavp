@@ -12,7 +12,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body suppressHydrationWarning={true} className="bg-blue-400">
+      <body suppressHydrationWarning={true} className="bg-black">
         <AuthContextProvider>
           <Navbar/>
           {children}
