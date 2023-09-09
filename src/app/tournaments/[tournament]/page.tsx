@@ -8,7 +8,7 @@ export default function Home() {
   const [changePicks, setChangePicks] = useState(!auth.currentUser);
 
   return (
-    <div className="bg-gray-400 min-h-screen pb-10">
+    <div>
           <button 
               onClick={() => {
                   setChangePicks(!changePicks);
