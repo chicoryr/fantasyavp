@@ -6,19 +6,27 @@ import GoogleAuthButton from "../../../components/GoogleAuthButton";
 import { useRouter } from "next/navigation";
 
 export default function Page() {
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [formData, setFormData] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: ''
+    })
     const router = useRouter();
 
+    const handleChange = (e: { target: { name: any; value: any; }; }) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        })
+    }
     const handleSignup = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
-        await createUserWithEmailAndPassword(auth, email, password)
+        await createUserWithEmailAndPassword(auth, formData.email, formData.password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                updateProfile(user, { displayName: firstName + " " + lastName });
+                updateProfile(user, { displayName: formData.firstName + " " + formData.lastName });
                 router.push("/");
             })
             .catch((error) => {
@@ -28,10 +36,10 @@ export default function Page() {
     }
 
     return (
-        <div className="min-h-screen flex flex-col justify-center items-center bg-gray-100">
-            <div className="w-full max-w-md bg-white p-8 rounded-xl shadow-md">
-                <div className="mb-4">
-                    <GoogleAuthButton text="Sign up with Google" />
+        <div className="min-h-screen flex justify-center items-center bg-gray-100">
+            <div className="bg-white p-8 rounded-xl shadow-md">
+                <div className="mb-4 flex justify-center items-center">
+                    <GoogleAuthButton text="Sign in with Google" />
                 </div>
 
                 {error && <p className="mb-4 text-red-500">{error}</p>}
@@ -39,42 +47,43 @@ export default function Page() {
                 <form onSubmit={handleSignup} className="space-y-4">
                     <div className="flex space-x-4">
                         <div className="flex-1">
-                            <label className="block text-sm font-medium mb-2">First name:</label>
+                            <label className={LABEL_STYLE}>First name:</label>
                             <input
-                                type="name"
-                                value={firstName}
-                                onChange={(e) => setFirstName(e.target.value)}
-                                className="w-full px-4 py-2 border rounded-md"
+                                value={formData.firstName}
+                                onChange={handleChange}
+                                className={INPUT_STYLE}
+                                name="firstName"
                             />
                         </div>
                         <div className="flex-1">
-                            <label className="block text-sm font-medium mb-2">Last name:</label>
+                            <label className={LABEL_STYLE}>Last name:</label>
                             <input
-                                type="name"
-                                value={lastName}
-                                onChange={(e) => setLastName(e.target.value)}
-                                className="w-full px-4 py-2 border rounded-md"
+                                value={formData.lastName}
+                                onChange={handleChange}
+                                className={INPUT_STYLE}
+                                name='lastName'
                             />
                         </div>
                     </div>
-
                     <div>
-                        <label className="block text-sm font-medium mb-2">Email:</label>
+                        <label className={LABEL_STYLE}>Email:</label>
                         <input
                             type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            className="w-full px-4 py-2 border rounded-md"
+                            value={formData.email}
+                            onChange={handleChange}
+                            className={INPUT_STYLE}
+                            name='email'
                         />
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium mb-2">Password:</label>
+                        <label className={LABEL_STYLE}>Password:</label>
                         <input
                             type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            className="w-full px-4 py-2 border rounded-md"
+                            value={formData.password}
+                            onChange={handleChange}
+                            className={INPUT_STYLE}
+                            name='password'
                         />
                     </div>
 
@@ -88,3 +97,7 @@ export default function Page() {
         </div>
     );
 }
+
+
+const INPUT_STYLE = 'w-full px-4 py-2 border rounded-md'
+const LABEL_STYLE = 'block text-sm font-medium mb-2'

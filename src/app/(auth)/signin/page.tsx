@@ -23,11 +23,10 @@ export default function Page() {
         });
     }   
 
-
     return (
-        <div className="min-h-screen flex flex-col justify-center items-center bg-gray-100">
-            <div className="w-full max-w-md bg-white p-8 rounded-xl shadow-md">
-                <div className="mb-4">
+        <div className="min-h-screen flex justify-center items-center bg-gray-100">
+            <div className="bg-white p-8 rounded-xl shadow-md">
+                <div className="mb-4 flex-col justify-center items-center">
                     <GoogleAuthButton text="Sign in with Google" />
                 </div>
 
@@ -35,22 +34,22 @@ export default function Page() {
 
                 <form onSubmit={handleSignup} className="space-y-4">
                     <div>
-                        <label className="block text-sm font-medium mb-2">Email:</label>
+                        <label className={LABEL_STYLE}>Email:</label>
                         <input
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="w-full px-4 py-2 border rounded-md"
+                            className={INPUT_STYLE}
                         />
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium mb-2">Password:</label>
+                        <label className={LABEL_STYLE}>Password:</label>
                         <input
                             type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            className="w-full px-4 py-2 border rounded-md"
+                            className={INPUT_STYLE}
                         />
                     </div>
 
@@ -64,3 +63,6 @@ export default function Page() {
         </div>
     );
 }
+
+const INPUT_STYLE = 'w-full px-4 py-2 border rounded-md'
+const LABEL_STYLE = 'block text-sm font-medium mb-2'

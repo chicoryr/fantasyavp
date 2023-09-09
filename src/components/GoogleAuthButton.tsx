@@ -7,7 +7,7 @@ export default function GoogleAuthButton(props: { text: string }) {
             onClick={() => {
                 googleSignIn()
             }}
-            className="bg-white hover:bg-gray-100 text-gray-700 py-2 px-4 rounded shadow-md flex items-center justify-center space-x-2 border border-gray-300"
+            className="bg-white flex hover:bg-gray-100 text-gray-700 py-2 px-4 rounded shadow-md space-x-2 border border-gray-300"
         >
             <svg {...props} viewBox='0 0 24 24' className="h-5 w-5 my-auto"> 
       <path
