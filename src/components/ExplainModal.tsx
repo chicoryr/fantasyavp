@@ -4,7 +4,7 @@ import { useThemeContext } from "@/context/ThemeContext"
 export default function ExplainModal() {
   const {theme} = useThemeContext();
   return (
-      <div className="min-h-screen flex flex-col items-center">
+      <div className={`min-h-screen flex flex-col items-center ${theme == 'light' ? 'bg-white' : 'bg-black'}`}>
         <div className={`w-full max-w-xl p-8 rounded-xl shadow-md text-center space-y-4 mt-20 `}>
           <h1 className="text-2xl font-bold mb-4">Welcome to Fantasy AVP!</h1>
           
