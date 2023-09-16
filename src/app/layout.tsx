@@ -2,7 +2,7 @@ import { AuthContextProvider } from "@/context/AuthContext";
 import Navbar from "../components/Navbar"
 import "./globals.css";
 import Footer from "@/components/Footer";
-import { DARK_BG_1 } from "@/styles/colors";
+import ThemeContextProvider, { useThemeContext } from "@/context/ThemeContext";
 export const metadata = {
   title: 'Fantasy AVP'
 }
@@ -13,13 +13,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body suppressHydrationWarning={true} className={`${DARK_BG_1}`}>
+      
+      <body suppressHydrationWarning={true}>
         <AuthContextProvider>
-          <Navbar/>
-          {children}
-          <Footer/>
+          <ThemeContextProvider>
+            <Navbar/>
+              {children}
+            <Footer/>
+          </ThemeContextProvider>
         </AuthContextProvider>
+         
       </body>
+      
     </html>
   )
 }
